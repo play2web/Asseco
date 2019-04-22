@@ -1,0 +1,83 @@
+@function convert($value, $currentUnit, $convertUnit) {
+   @if $currentUnit == px{
+    @if $convertUnit == ems {
+       @return $value / 16 + 0em;
+    }
+    @else if $convertUnit == percent {
+       @return percentage($value / 16);
+    }
+
+  }
+  @else if $currentUnit == ems {
+     @if $convertUnit == px{
+      @return $value * 16 + 0px;
+    }
+    @else if $convertUnit == percent {
+       @return percentage($value);
+    }
+
+  }
+  @else if $currentUnit == percent {
+     @if $convertUnit == px{
+      @return $value * 16 / 100 + 0px;
+    }
+    @else if $convertUnit == ems {
+       @return $value / 100 + 0em;
+    }
+
+  }
+  @else if $currentUnit == pts {
+     @if $convertUnit == px{
+      @return $value * 1.3333 +0px;
+    }
+    @else if $convertUnit == ems {
+       @return $value / 12 + 0em;
+    }
+    @else if $convertUnit == percent {
+       @return percentage($value / 12)
+    }
+  }
+}
+
+$base-font-size: 16px;
+
+// Remove units from the given value.
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// convert only single px value to rem
+@function single-px-to-rem($value) {
+  $unitless-root-font-size: strip-unit($base-font-size);
+  @return $value / $unitless-root-font-size * 1rem;
+}
+
+// Convert pixel values to rem.
+@function px-to-rem($values-in-pixels) {
+  $length: length($values-in-pixels);
+  $result: ();
+
+  // return a single value without wrapping in to a list
+  @if $length == 1 {
+     @return single-px-to-rem(nth($values-in-pixels, 1));
+  }
+  @for $i from 1 through $length {
+    $result: append($result, single-px-to-rem(nth($values-in-pixels, $i)));
+  }
+  @return $result;
+}
+
+// Tint given color by given amount.
+@function tint($color, $percentage) {
+   @return mix(white, $color, 100% - $percentage);
+}
+
+// opacity mixin
+@mixin opacity($opacity: 0.5) {
+  filter: alpha(opacity=$opacity*100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=#{$opacity*100});
+  opacity: $opacity;
+}

@@ -1,0 +1,87 @@
+@import "utilities";
+
+.modal-dialog {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+}
+@media(max-width: 768px) {
+  .modal-dialog {
+    min-height: calc(100vh - 20px);
+  }
+}
+
+.modal-content {
+  border-radius: 0 !important;
+
+  i {
+    vertical-align: middle;
+  }
+
+  .modal-header {
+    border-radius: 0 !important;
+    padding: px-to-rem(5 15 5 15);
+    color: $white;
+    background-color: $primary;
+
+    button {
+      display: none;
+    }
+
+    h4 {
+      font-size: convert(16, px, ems);
+    }
+
+    i {
+      vertical-align: middle;
+      margin-right: single-px-to-rem(10);
+      margin-bottom: single-px-to-rem(3);
+
+      &.fa-undo {
+        color: $white;
+        cursor: pointer;
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: $secondary !important;
+        }
+      }
+    }
+
+    .modal-title {
+      border-radius: 0 !important;
+    }
+  }
+
+  .modal-body {
+    font-weight: normal;
+
+    .form-group {
+      margin: px-to-rem(10 0 10 10);
+      vertical-align: middle;
+    }
+
+    h3 {
+      font-size: convert(16, px, ems);
+      color: $primary;
+      font-weight: bold;
+
+    }
+
+    i {
+      font-size: convert(20, px, ems);
+    }
+
+    .invalid-error {
+      font-size: convert(14, px, ems);
+      margin: signel-px-to-rem(5);
+    }
+  }
+
+  .modal-footer {
+    justify-content: flex-start;
+  }
+}

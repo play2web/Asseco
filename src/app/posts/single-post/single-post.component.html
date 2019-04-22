@@ -1,0 +1,12 @@
+<ng-container *ngFor="let post of postsItems">
+  <!-- Title -->
+  <h1 class="mt-4">{{ post.title }}</h1>
+  <!-- Author -->
+  <p class="lead">Userid: {{ post.userId }}</p>
+  <hr>
+  <!-- Post Content -->
+  <p class="lead">{{ post.body }}</p>
+  <hr>
+</ng-container>
+<app-add-comment></app-add-comment>
+<app-post-comments></app-post-comments>

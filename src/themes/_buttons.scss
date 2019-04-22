@@ -1,0 +1,27 @@
+@import "utilities";
+@import 'variables';
+
+.btn {
+  transition: all .2s linear;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -o-transition: all .2s linear;
+}
+
+.btn-read-more {
+  padding: single-px-to-rem(5);
+  text-align: center;
+  border-radius: 0;
+  display: inline-block;
+  border: single-px-to-rem(2) solid $primary;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: convert(12, px, ems);
+  color: $secondary;
+}
+
+.btn-read-more:hover {
+  color: $primary;
+  background: $secondary;
+}

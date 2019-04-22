@@ -1,0 +1,16 @@
+<ng-container *ngIf="commentsItems">
+  <div class="card my-4">
+    <h5 class="card-header">Comments:</h5>
+    <div class="card-body">
+      <div class="media mb-4" *ngFor="let comment of commentsItems">
+        <!-- Single Comment -->
+        <div class="media-body">
+          <h5 class="mt-0">{{ comment.name }} <i class="fa fa-pencil mr-3 color-primary-hover" (click)="updateComment(comment)"></i><i
+              class="fa fa-trash color-primary-hover" ngConfirm [title]="'Confirm'" [message]="'Do you want to delete this comment?'"
+              (onConfirm)="deleteComment(comment)"></i></h5>
+          {{ comment.body }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

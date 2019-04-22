@@ -1,0 +1,51 @@
+<div class="modal-header b-c-primary ">
+  <h4 class="modal-title"><i class="fa fa-eur"></i>Update comment</h4>
+</div>
+<form [formGroup]="updateCommentForm" (ngSubmit)="updateComment()">
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="form-group row">
+        <div class="col-12 pl-0">
+          <label for="name" class="col-6 col-form-label">Name:</label>
+          <input class="form-control" type="text" name="name" formControlName="name"
+            [ngClass]="{ 'is-invalid': submitted && formControls.name.errors }">
+          <div *ngIf="submitted && formControls.name.invalid" class="invalid-feedback">
+            <div *ngIf="formControls.name.errors.required">Required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12 pl-0">
+          <label for="email" class="col-6 col-form-label">Email:</label>
+          <input class="form-control" type="email" name="email" formControlName="email"
+            [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+          <div *ngIf="submitted && formControls.email.invalid" class="invalid-feedback">
+            <div *ngIf="formControls.email.errors.required">Required
+            </div>
+            <div *ngIf="formControls.email.errors.email">Not valid email</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12 pl-0">
+          <label for="body" class="col-6 col-form-label">Text:</label>
+          <textarea class="form-control" rows="5" formControlName="body"
+            [ngClass]="{ 'is-invalid': submitted && formControls.body.errors }">
+                </textarea>
+          <div *ngIf="submitted && formControls.body.invalid" class="invalid-feedback">
+            <div *ngIf="formControls.body.errors.required">Required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="buttons-inline">
+      <button class="btn btn-success" type="submit">Save</button>
+      <button class="btn btn-cancel" type="reset" (click)="activeModal.close('Close click')">
+        Close</button>
+    </div>
+  </div>
+</form>
